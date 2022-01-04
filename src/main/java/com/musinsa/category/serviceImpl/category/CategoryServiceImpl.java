@@ -21,7 +21,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<CategoryResponse> getCategoryList() {
+    public List<CategoryResponse> getCategory() {
         return categoryRepository.findRootCategory().stream().map(CategoryMapper.INSTANCE::toCategoryResponse).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public CategoryResponse getCategoryById(Long categoryId) throws Exception {
+        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
+        if (optionalCategoryEntity.isEmpty())
+            throw new Exception("zz"); // TODO custom
+
+        return CategoryMapper.INSTANCE.toCategoryResponse(optionalCategoryEntity.get());
     }
 }
