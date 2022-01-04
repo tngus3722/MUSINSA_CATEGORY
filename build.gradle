@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'com.musinsa'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // hibernate validator
+    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
+    // h2 db
+    implementation 'com.h2database:h2'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // Mapstruct
+    implementation 'org.mapstruct:mapstruct:1.4.1.Final'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.1.Final"
+    testImplementation 'org.mapstruct:mapstruct:1.4.1.Final'
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.4.1.Final"
+    // flyway
+    implementation 'org.flywaydb:flyway-core:8.2.2'
+    // swagger
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
