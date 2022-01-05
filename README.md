@@ -26,9 +26,9 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 
 
 ========================
-# Getting Started without docker (deprecated)
+## Getting Started without docker
 
-## Required Environments without Docker (deprecated)
+### Required Environments without Docker (deprecated)
 
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * JDK (>=11)
@@ -38,7 +38,7 @@ sudo apt-get upgrade
 sudo apt-get update
 sudo apt-get install git
 ```
-## Required Environments without Docker (deprecated)
+### Required Environments without Docker (deprecated)
 
 * git clone
 ```
@@ -46,12 +46,12 @@ git clone https://github.com/tngus3722/MUSINSA_CATEGORY.git
 cd MUSINSA_CATEGORY
 ```
 
-## 1. build jar
+### 1. build jar
 ```
 ./gradlew bootJar (need java (>= 11)
 ```
 
-## 2. excute jar
+### 2. excute jar
 ```
 
 ```
