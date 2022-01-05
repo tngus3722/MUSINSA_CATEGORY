@@ -14,6 +14,6 @@ public interface CategoryMapper {
     @Mapping(source = "childCategoryEntities", target = "childCategoryResponses")
     CategoryResponse toCategoryResponse(CategoryEntity categoryEntity);
 
-    // without childCategoires Mapper
+    // without childCategories Mapper
     //CategoryResponse toCategoryResponseWithoutChild(CategoryEntity categoryEntity);
 }
