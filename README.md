@@ -48,8 +48,9 @@ cd MUSINSA_CATEGORY
 ```
 
 ### 1. build jar
+need java (>= 11)
 ```
-./gradlew bootJar (need java (>= 11)
+./gradlew bootJar 
 ```
 
 ### 2. excute jar
