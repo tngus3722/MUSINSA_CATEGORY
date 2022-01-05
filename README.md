@@ -6,7 +6,7 @@ musinsa assignment
 * Docker
 
 # Getting Started with docker 
-## 0. downdload docker
+## 0. download docker
 ```
 sudo apt-get upgrade
 sudo apt-get update
