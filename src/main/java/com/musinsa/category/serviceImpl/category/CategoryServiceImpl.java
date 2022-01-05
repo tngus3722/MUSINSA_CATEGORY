@@ -34,6 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
         return CategoryMapper.INSTANCE.toCategoryResponse(this.getCategoryEntity(categoryId));
     }
 
+    @Transactional
     @Override
     public void postCategory(CategoryRequest categoryRequest) {
         if (categoryRequest.getParentCategoryId() == null) // set root if parentCategoryId null
@@ -51,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void deleteCategory(Long categoryId) {
-        if(this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
+        if(!this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
             throw new RequestInputException(ErrorMessage.CHILD_CATEGORY_EXIST_EXCEPTION, false);
         categoryRepository.delete(this.getCategoryEntity(categoryId)); // note! soft delete
     }
