@@ -31,59 +31,35 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(readOnly = true)
     @Override
     public CategoryResponse getCategoryById(Long categoryId) {
-        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
-        if (optionalCategoryEntity.isEmpty())
-            throw new RequestInputException(ErrorMessage.CATEGORY_NOT_EXIST_EXCEPTION, false);
-
-        return CategoryMapper.INSTANCE.toCategoryResponse(optionalCategoryEntity.get());
+        return CategoryMapper.INSTANCE.toCategoryResponse(this.getCategoryEntity(categoryId));
     }
 
     @Override
     public void postCategory(CategoryRequest categoryRequest) {
-        if (categoryRequest.getParentCategoryId() == null) {
-            categoryRepository.save(new CategoryEntity(categoryRequest.getCategoryName(), null));
-            return;
-        }
-
-        Optional<CategoryEntity> optionalParentCategoryEntity = categoryRepository.findById(categoryRequest.getParentCategoryId());
-        if (optionalParentCategoryEntity.isEmpty())
-            throw new RequestInputException(ErrorMessage.PARENT_CATEGORY_NOT_EXIST_EXCEPTION, false);
-
-        categoryRepository.save(new CategoryEntity(categoryRequest.getCategoryName(), optionalParentCategoryEntity.get())); // set parentCategory if exists
+        if (categoryRequest.getParentCategoryId() == null) // set root if parentCategoryId null
+            categoryRepository.save(new CategoryEntity(categoryRequest, null));
+        else // set parentCategory if exists
+            categoryRepository.save(new CategoryEntity(categoryRequest, this.getCategoryEntity(categoryRequest.getParentCategoryId())));
     }
 
     @Transactional
     @Override
     public void updateCategory(Long categoryId, CategoryRequest categoryRequest) {
-        Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
-        if (optionalCategoryEntity.isEmpty())
-            throw new RequestInputException(ErrorMessage.CATEGORY_NOT_EXIST_EXCEPTION, false);
-
-        optionalCategoryEntity.get().setCategoryName(categoryRequest.getCategoryName());
-        if (categoryRequest.getParentCategoryId() == null) {
-            optionalCategoryEntity.get().setParentCategoryEntity(null); // if value null, set root category
-            return;
-        }
-
-        if(categoryRequest.getParentCategoryId() == categoryId)
-            throw new RequestInputException(ErrorMessage.PARENT_CATEGORY_VALUE_EXCEPTION, false);
-
-        Optional<CategoryEntity> optionalParentCategoryEntity = categoryRepository.findById(categoryRequest.getParentCategoryId());
-        if (optionalParentCategoryEntity.isEmpty())
-            throw new RequestInputException(ErrorMessage.PARENT_CATEGORY_NOT_EXIST_EXCEPTION, false);
-
-        optionalCategoryEntity.get().setParentCategoryEntity(optionalParentCategoryEntity.get()); // change or maintain parentCategory if value exists
+        this.getCategoryEntity(categoryId).update(categoryRequest); // 계층이동은 금지한다.
     }
 
     @Transactional
     @Override
     public void deleteCategory(Long categoryId) {
+        if(this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
+            throw new RequestInputException(ErrorMessage.CHILD_CATEGORY_EXIST_EXCEPTION, false);
+        categoryRepository.delete(this.getCategoryEntity(categoryId)); // note! soft delete
+    }
+
+    private CategoryEntity getCategoryEntity(Long categoryId) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
         if (optionalCategoryEntity.isEmpty())
             throw new RequestInputException(ErrorMessage.CATEGORY_NOT_EXIST_EXCEPTION, false);
-
-        // note! soft delete cascade
-        categoryRepository.delete(optionalCategoryEntity.get());
-
+        return optionalCategoryEntity.get();
     }
 }

@@ -9,6 +9,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,11 +26,15 @@ public class CategoryEntity extends BaseEntity {
     @JoinColumn(name = "parent_category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoryEntity parentCategoryEntity = null;
-    @OneToMany(mappedBy = "parentCategoryEntity", cascade = CascadeType.REMOVE)
-    private List<CategoryEntity> childCategoryEntities;
+    @OneToMany(mappedBy = "parentCategoryEntity")
+    private List<CategoryEntity> childCategoryEntities = new ArrayList<>();
 
-    public CategoryEntity(String categoryName, CategoryEntity parentCategoryEntity) {
-        this.categoryName = categoryName;
+    public CategoryEntity(CategoryRequest categoryRequest, CategoryEntity parentCategoryEntity) {
+        this.update(categoryRequest);
         this.parentCategoryEntity = parentCategoryEntity;
+    }
+
+    public void update(CategoryRequest categoryRequest) {
+        this.categoryName = categoryRequest.getCategoryName();
     }
 }
