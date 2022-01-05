@@ -37,7 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void postCategory(CategoryRequest categoryRequest) {
-        if (categoryRequest.getParentCategoryId() == null) // set root if parentCategoryId null
+        // set root if parentCategoryId is null
+        if (categoryRequest.getParentCategoryId() == null)
             categoryRepository.save(new CategoryEntity(categoryRequest, null));
         else // set parentCategory if exists
             categoryRepository.save(new CategoryEntity(categoryRequest, this.getCategoryEntity(categoryRequest.getParentCategoryId())));
