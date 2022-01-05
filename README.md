@@ -39,7 +39,6 @@ sudo apt-get update
 sudo apt-get install git
 sudo apt-get install openjdk-11-jdk
 ```
-### Required Environments without Docker (deprecated)
 
 * git clone
 ```
