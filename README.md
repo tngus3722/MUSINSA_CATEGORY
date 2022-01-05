@@ -7,7 +7,7 @@
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * Docker
 
-## 0. download docker
+## set up example
 ```
 sudo apt-get upgrade
 sudo apt-get update
@@ -32,7 +32,7 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * JDK (>=11)
-
+### set up example
 ```
 sudo apt-get upgrade
 sudo apt-get update
@@ -40,19 +40,19 @@ sudo apt-get install git
 sudo apt-get install openjdk-11-jdk
 ```
 
-* git clone
+### 1. git clone
 ```
 git clone https://github.com/tngus3722/MUSINSA_CATEGORY.git
 cd MUSINSA_CATEGORY
 ```
 
-### 1. build jar
+### 2. build jar
 need java (>= 11)
 ```
 ./gradlew bootJar 
 ```
 
-### 2. excute jar
+### 3. excute jar
 ```
 java -jar build/libs/categoty-0.0.1-SNAPSHOT.jar.jar
 ```
