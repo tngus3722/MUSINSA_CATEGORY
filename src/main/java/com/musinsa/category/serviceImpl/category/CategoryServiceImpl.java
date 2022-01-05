@@ -52,6 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     @Override
     public void deleteCategory(Long categoryId) {
+        // category delete only allowed when it has not children
         if(!this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
             throw new RequestInputException(ErrorMessage.CHILD_CATEGORY_EXIST_EXCEPTION, false);
         categoryRepository.delete(this.getCategoryEntity(categoryId)); // note! soft delete
