@@ -37,6 +37,7 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 sudo apt-get upgrade
 sudo apt-get update
 sudo apt-get install git
+sudo apt-get install openjdk-11-jdk
 ```
 ### Required Environments without Docker (deprecated)
 
