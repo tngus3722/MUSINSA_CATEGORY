@@ -27,7 +27,7 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 
 
 # Getting Started without docker
-## Required Environments without Docker
+## Required Environments without Docker (deprecated)
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * JDK (>=11)
 ```
