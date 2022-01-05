@@ -1,8 +1,8 @@
 # MUSINSA_CATEGORY
 musinsa assignment
 
-# Required Environments with Docker 
-* Ubuntu 18.04 or 20.04 version recommanded (AWS EC2)
+# Required Environments with Docker (recommended)
+* Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * Docker
 
 # Getting Started with docker 
@@ -28,9 +28,8 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 
 # Getting Started without docker
 ## Required Environments without Docker
-* Ubuntu 18.04 or 20.04 version recommanded (AWS EC2)
+* Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * JDK (>=11)
-* 
 ```
 sudo apt-get upgrade
 sudo apt-get update
@@ -42,11 +41,15 @@ git clone https://github.com/tngus3722/MUSINSA_CATEGORY.git
 cd MUSINSA_CATEGORY
 ```
 
-## 1. build gradle
+## 1. build jar
 ```
 ./gradlew bootJar (need java (>= 11)
 ```
 
+## 2. excute jar
+```
+
+```
 
 
 
