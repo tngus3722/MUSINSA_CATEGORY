@@ -56,7 +56,7 @@ cd MUSINSA_CATEGORY
 
 # NOTE ! 
 
-#### Because of flyway and using H2DB, you need not any DB or DDL
+#### Because of flyway and H2DB, you need not any DB or DDL
 #### initial category table values are inserted By flyway just use it !
 ## Also you can use my test server with swagger-ui
 ```
