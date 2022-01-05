@@ -55,9 +55,12 @@ need java (>= 11)
 
 ### 2. excute jar
 ```
-
+java -jar build/libs/categoty-0.0.1-SNAPSHOT.jar.jar
 ```
-
+or
+```
+java -jar build/libs/*.jar
+```
 
 
 
