@@ -26,6 +26,7 @@ public class CategoryEntity extends BaseEntity {
     @JoinColumn(name = "parent_category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoryEntity parentCategoryEntity = null;
+    @OrderBy("id asc")
     @OneToMany(mappedBy = "parentCategoryEntity")
     private List<CategoryEntity> childCategoryEntities = new ArrayList<>();
 
