@@ -1,9 +1,12 @@
 package com.musinsa.category.entity.category;
 
+import com.musinsa.category.domain.category.CategoryRequest;
 import com.musinsa.category.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@SQLDelete(sql = "UPDATE category SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted = false")
 @Table(name = "category")
 public class CategoryEntity extends BaseEntity {
     @Basic
@@ -19,7 +24,12 @@ public class CategoryEntity extends BaseEntity {
     private String categoryName;
     @JoinColumn(name = "parent_category_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private CategoryEntity parentCategory;
-    @OneToMany(mappedBy = "parentCategory")
+    private CategoryEntity parentCategoryEntity = null;
+    @OneToMany(mappedBy = "parentCategoryEntity", cascade = CascadeType.REMOVE)
     private List<CategoryEntity> childCategoryEntities;
+
+    public CategoryEntity(String categoryName, CategoryEntity parentCategoryEntity) {
+        this.categoryName = categoryName;
+        this.parentCategoryEntity = parentCategoryEntity;
+    }
 }

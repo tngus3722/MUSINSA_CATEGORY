@@ -20,7 +20,7 @@ public class BaseEntity {
     protected Long id;
     @Basic
     @Column(name = "is_deleted")
-    protected Boolean isDeleted;
+    protected Boolean isDeleted = false;
     @Basic
     @CreationTimestamp
     @Column(name = "created_at", insertable = false, updatable = false)

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 
-    @Query("SELECT c FROM CategoryEntity c WHERE c.parentCategory is null")
+    @Query("SELECT c FROM CategoryEntity c WHERE c.parentCategoryEntity is null")
     List<CategoryEntity> findRootCategory();
 }

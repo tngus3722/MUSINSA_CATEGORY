@@ -1,5 +1,6 @@
-package com.musinsa.category.domain.response;
+package com.musinsa.category.domain.category;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 @Setter
 @Getter
