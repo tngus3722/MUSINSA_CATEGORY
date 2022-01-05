@@ -10,6 +10,10 @@ import org.mapstruct.factory.Mappers;
 public interface CategoryMapper {
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
+    // get childCategories recursively
     @Mapping(source = "childCategoryEntities", target = "childCategoryResponses")
     CategoryResponse toCategoryResponse(CategoryEntity categoryEntity);
+
+    // without childCategoires Mapper
+    //CategoryResponse toCategoryResponseWithoutChild(CategoryEntity categoryEntity);
 }
