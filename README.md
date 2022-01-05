@@ -51,7 +51,7 @@ cd MUSINSA_CATEGORY
 
 
 
-#Note
+# NOTE ! 
 
 #### Because of flyway and using H2DB, you need not any DB or DDL
 #### initial category table values are inserted By flyway just use it !
