@@ -38,10 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void postCategory(CategoryRequest categoryRequest) {
         // set root if parentCategoryId is null
-        if (categoryRequest.getParentCategoryId() == null)
-            categoryRepository.save(new CategoryEntity(categoryRequest, null));
-        else // set parentCategory if exists
-            categoryRepository.save(new CategoryEntity(categoryRequest, this.getCategoryEntity(categoryRequest.getParentCategoryId())));
+        CategoryEntity categoryEntity = new CategoryEntity(categoryRequest);
+
+        if (categoryRequest.getParentCategoryId() != null)
+            categoryEntity.setParentCategoryEntity(this.getCategoryEntity(categoryRequest.getParentCategoryId()));
+
+        categoryRepository.save(new CategoryEntity(categoryRequest));
     }
 
     @Transactional
@@ -54,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategory(Long categoryId) {
         // category delete only allowed when it has not children
-        if(!this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
+        if (!this.getCategoryEntity(categoryId).getChildCategoryEntities().isEmpty())
             throw new RequestInputException(ErrorMessage.CHILD_CATEGORY_EXIST_EXCEPTION, false);
         categoryRepository.delete(this.getCategoryEntity(categoryId)); // note! soft delete
     }

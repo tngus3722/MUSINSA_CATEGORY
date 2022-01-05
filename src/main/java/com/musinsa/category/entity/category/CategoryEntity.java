@@ -30,12 +30,12 @@ public class CategoryEntity extends BaseEntity {
     @OneToMany(mappedBy = "parentCategoryEntity")
     private List<CategoryEntity> childCategoryEntities = new ArrayList<>();
 
-    public CategoryEntity(CategoryRequest categoryRequest, CategoryEntity parentCategoryEntity) {
+    public CategoryEntity(CategoryRequest categoryRequest) {
         this.update(categoryRequest);
-        this.parentCategoryEntity = parentCategoryEntity;
     }
 
     public void update(CategoryRequest categoryRequest) {
         this.categoryName = categoryRequest.getCategoryName();
     }
+
 }
