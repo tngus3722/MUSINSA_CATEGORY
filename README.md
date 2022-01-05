@@ -1,11 +1,12 @@
 # MUSINSA_CATEGORY
 musinsa assignment
 
-# Required Environments with Docker (recommended)
+# Getting Started with docker 
+
+## Required Environments with Docker (recommended)
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * Docker
 
-# Getting Started with docker 
 ## 0. download docker
 ```
 sudo apt-get upgrade
@@ -24,17 +25,21 @@ sudo docker run -d -p 8080:8080 tngus3722/musinsa
 
 
 
+========================
+# Getting Started without docker (deprecated)
 
-
-# Getting Started without docker
 ## Required Environments without Docker (deprecated)
+
 * Ubuntu 18.04 or 20.04 version recommended (AWS EC2)
 * JDK (>=11)
+
 ```
 sudo apt-get upgrade
 sudo apt-get update
 sudo apt-get install git
 ```
+## Required Environments without Docker (deprecated)
+
 * git clone
 ```
 git clone https://github.com/tngus3722/MUSINSA_CATEGORY.git
