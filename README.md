@@ -65,11 +65,11 @@ java -jar build/libs/*.jar
 
 # NOTE ! 
 
-#### Because of flyway and H2db, you do not need any DB or DDL
-#### Because of using h2 db in memory, datas in database are reset when restarted
-#### initial category table values are inserted By flyway just use it !
+Because of flyway and H2db, you do not need any DB or DDL
+Because of using h2 db in memory, datas in database are reset when restarted
+initial category table values are inserted By flyway just use it !
 
-## Also you can use my test server with swagger-ui
+Also you can use my test server with swagger-ui
 ```
 http://52.78.30.91:8080/swagger-ui.html
 ```
