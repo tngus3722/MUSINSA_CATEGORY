@@ -75,3 +75,10 @@ http://52.78.30.91:8080/swagger-ui.html
 ```
 
 thank you !
+
+
+all test code are passed (21-01-06)
+
+
+![image](https://user-images.githubusercontent.com/32263898/148392956-3089ed1f-0c3b-4de0-b3e2-d9fe81b658c6.png)
+
