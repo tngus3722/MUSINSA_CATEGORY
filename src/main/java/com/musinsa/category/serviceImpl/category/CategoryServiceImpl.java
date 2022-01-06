@@ -52,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse updateCategory(Long categoryId, CategoryRequest categoryRequest) {
         CategoryEntity categoryEntity = this.getCategoryEntity(categoryId); // 계층이동은 금지한다
-        categoryEntity.setCategoryName(categoryEntity.getCategoryName());
+        categoryEntity.setCategoryName(categoryRequest.getCategoryName());
         return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
     }
 
@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new RequestInputException(ErrorMessage.CHILD_CATEGORY_EXIST_EXCEPTION, false);
         categoryRepository.delete(this.getCategoryEntity(categoryId)); // note! soft delete
     }
-
+    
     private CategoryEntity getCategoryEntity(Long categoryId) {
         Optional<CategoryEntity> optionalCategoryEntity = categoryRepository.findById(categoryId);
         if (optionalCategoryEntity.isEmpty())
