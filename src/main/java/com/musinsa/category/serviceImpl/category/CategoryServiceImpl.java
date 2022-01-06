@@ -43,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (categoryRequest.getParentCategoryId() != null)
             categoryEntity.setParentCategoryEntity(this.getCategoryEntity(categoryRequest.getParentCategoryId()));
 
-        categoryRepository.save(new CategoryEntity(categoryRequest));
+        categoryRepository.save(categoryEntity);
 
         return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
     }
