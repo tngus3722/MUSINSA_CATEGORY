@@ -39,10 +39,10 @@ public class CategoryControllerTest {
         CategoryResponse categoryResponse = new CategoryResponse();
         categoryResponse.setCategoryName("카테고리네임");
 
-        //given
+        // mocking
         given(categoryService.getCategoryById(1L)).willReturn(categoryResponse);
 
-        // then
+        // when, then
         mockMvc.perform(get("/category/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categoryName", is("카테고리네임")));
@@ -56,10 +56,10 @@ public class CategoryControllerTest {
         categoryResponse.setCategoryName("카테고리네임");
         categoryResponses.add(categoryResponse);
 
-        //given
+        // mocking
         given(categoryService.getCategory()).willReturn(categoryResponses);
 
-        // then
+        // when, then
         mockMvc.perform(get("/category"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].categoryName", is("카테고리네임")));
@@ -76,10 +76,10 @@ public class CategoryControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String content = objectMapper.writeValueAsString(categoryRequest);
 
-        //given
+        // mocking
         given(categoryService.postCategory(any(CategoryRequest.class))).willReturn(categoryResponse);
 
-        // then
+        // when, then
         mockMvc.perform(post("/category").content(content).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.categoryName", is("test")))
                 .andExpect(status().isCreated());
@@ -87,6 +87,7 @@ public class CategoryControllerTest {
 
     @Test
     public void deleteCategory() throws Exception {
+        // when, then
         mockMvc.perform(delete("/category/1"))
                 .andExpect(status().isOk());
     }
@@ -102,10 +103,10 @@ public class CategoryControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String content = objectMapper.writeValueAsString(categoryRequest);
 
-        //given
+        // mocking
         given(categoryService.updateCategory(any(Long.class), any(CategoryRequest.class))).willReturn(categoryResponse);
 
-        // then
+        // when, then
         mockMvc.perform(put("/category/1").content(content).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.categoryName", is("test2")))
                 .andExpect(status().isOk());
