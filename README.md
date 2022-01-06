@@ -72,7 +72,7 @@ java -jar build/libs/*.jar
 ```
 {
   "categoryName": "string",
-  "parentCategoryId": 1
+  "parentCategoryId": 2
 }
 ```
 
