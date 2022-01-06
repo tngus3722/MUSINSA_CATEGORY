@@ -66,7 +66,7 @@ java -jar build/libs/*.jar
 
 1. POST json request example
 - category name is reqired 
-- category name is minumum length 1
+- category name minimum length 1
 - parent category id is optional
 - parent category id is 1 or more 
 ```
@@ -79,7 +79,7 @@ java -jar build/libs/*.jar
 
 2. PUT json request example
 - category name is reqired 
-- category name is minumum length 1
+- category name minimum length 1
 - parent category id is null only 
 - path variable category id required
 ```
