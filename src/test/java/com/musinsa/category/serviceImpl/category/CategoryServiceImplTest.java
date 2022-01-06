@@ -1,5 +1,6 @@
 package com.musinsa.category.serviceImpl.category;
 
+import com.musinsa.category.domain.category.CategoryRequest;
 import com.musinsa.category.domain.category.CategoryResponse;
 import com.musinsa.category.entity.category.CategoryEntity;
 import com.musinsa.category.mapper.category.CategoryMapper;
@@ -70,11 +71,14 @@ public class CategoryServiceImplTest {
     @Test
     public void updateCategory() {
         // given
+        CategoryRequest categoryRequest = new CategoryRequest();
+        categoryRequest.setCategoryName("after");
+
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setId(1L);
         categoryEntity.setCategoryName("before");
         //when
-        categoryEntity.setCategoryName("after");
+        categoryEntity.setCategoryName(categoryRequest.getCategoryName());
         // mocking
         CategoryResponse categoryResponse = CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
         // then
