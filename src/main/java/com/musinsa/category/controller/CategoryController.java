@@ -29,9 +29,8 @@ public class CategoryController {
     }
 
     @PostMapping("/category")
-    public ResponseEntity<Void> postCategory(@RequestBody @Validated(ValidationGroup.Create.class) CategoryRequest categoryRequest) {
-        categoryService.postCategory(categoryRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<CategoryResponse> postCategory(@RequestBody @Validated(ValidationGroup.Create.class) CategoryRequest categoryRequest) {
+        return new ResponseEntity<CategoryResponse>(categoryService.postCategory(categoryRequest), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/category/{category_id}")
@@ -41,9 +40,8 @@ public class CategoryController {
     }
 
     @PutMapping("/category/{category_id}")
-    public ResponseEntity<Void> updateCategory(@PathVariable(value = "category_id") Long categoryId,
-                                               @RequestBody @Validated(ValidationGroup.Update.class) CategoryRequest categoryRequest) {
-        categoryService.updateCategory(categoryId, categoryRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<CategoryResponse> updateCategory(@PathVariable(value = "category_id") Long categoryId,
+                                                           @RequestBody @Validated(ValidationGroup.Update.class) CategoryRequest categoryRequest) {
+        return new ResponseEntity<CategoryResponse>(categoryService.updateCategory(categoryId, categoryRequest), HttpStatus.OK);
     }
 }

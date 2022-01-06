@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Transactional
     @Override
-    public void postCategory(CategoryRequest categoryRequest) {
+    public CategoryResponse postCategory(CategoryRequest categoryRequest) {
         // set root if parentCategoryId is null
         CategoryEntity categoryEntity = new CategoryEntity(categoryRequest);
 
@@ -44,12 +44,16 @@ public class CategoryServiceImpl implements CategoryService {
             categoryEntity.setParentCategoryEntity(this.getCategoryEntity(categoryRequest.getParentCategoryId()));
 
         categoryRepository.save(new CategoryEntity(categoryRequest));
+
+        return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
     }
 
     @Transactional
     @Override
-    public void updateCategory(Long categoryId, CategoryRequest categoryRequest) {
-        this.getCategoryEntity(categoryId).update(categoryRequest); // 계층이동은 금지한다.
+    public CategoryResponse updateCategory(Long categoryId, CategoryRequest categoryRequest) {
+        CategoryEntity categoryEntity = this.getCategoryEntity(categoryId); // 계층이동은 금지한다
+        categoryEntity.setCategoryName(categoryEntity.getCategoryName());
+        return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
     }
 
     @Transactional
