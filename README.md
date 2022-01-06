@@ -62,6 +62,31 @@ java -jar build/libs/*.jar
 ```
 
 
+#### Usage
+
+1. POST json request example
+- category name is reqired 
+- category name is minumum length 1
+- parent category id is optional
+- parent category id is 1 or more 
+```
+{
+  "categoryName": "string"
+}
+```
+
+
+2. PUT json request example
+- category name is reqired 
+- category name is minumum length 1
+- parent category id is null only 
+- path variable category id required
+```
+{
+  "categoryName": "string"
+}
+```
+
 
 # NOTE ! 
 
