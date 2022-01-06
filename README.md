@@ -71,7 +71,8 @@ java -jar build/libs/*.jar
 - parent category id is 1 or more 
 ```
 {
-  "categoryName": "string"
+  "categoryName": "string",
+  "parentCategoryId": 1
 }
 ```
 
