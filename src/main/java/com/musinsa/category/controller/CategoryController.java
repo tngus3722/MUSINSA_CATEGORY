@@ -4,19 +4,20 @@ import com.musinsa.category.annotation.ValidationGroup;
 import com.musinsa.category.domain.category.CategoryRequest;
 import com.musinsa.category.domain.category.CategoryResponse;
 import com.musinsa.category.service.category.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 public class CategoryController {
 
-    @Resource
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
+
 
     @GetMapping("/category")
     public ResponseEntity<List<CategoryResponse>> getCategory() {

@@ -8,19 +8,19 @@ import com.musinsa.category.exception.staticException.RequestInputException;
 import com.musinsa.category.mapper.category.CategoryMapper;
 import com.musinsa.category.repository.category.CategoryRepository;
 import com.musinsa.category.service.category.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Resource
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
     @Override

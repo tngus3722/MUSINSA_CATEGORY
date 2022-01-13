@@ -20,10 +20,8 @@ import java.util.List;
 public class SwaggerConfig {
     @Value("${project.title}")
     private String title;
-
     @Value("${project.version}")
     private String version;
-
     @Value("${access.token.name}")
     private String accessTokenName;
     @Value("${refresh.token.name}")
