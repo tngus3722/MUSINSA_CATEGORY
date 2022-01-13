@@ -53,6 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse updateCategory(Long categoryId, CategoryRequest categoryRequest) {
         CategoryEntity categoryEntity = this.getCategoryEntity(categoryId); // 계층이동은 금지한다
         categoryEntity.setCategoryName(categoryRequest.getCategoryName());
+        categoryRepository.saveAndFlush(categoryEntity);
         return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
     }
 
