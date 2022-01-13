@@ -3,10 +3,15 @@ package com.musinsa.category.serviceImpl.category;
 import com.musinsa.category.domain.category.CategoryRequest;
 import com.musinsa.category.domain.category.CategoryResponse;
 import com.musinsa.category.entity.category.CategoryEntity;
+import com.musinsa.category.exception.staticException.RequestInputException;
 import com.musinsa.category.mapper.category.CategoryMapper;
 import com.musinsa.category.repository.category.CategoryRepository;
+import com.musinsa.category.service.category.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,10 +24,12 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class CategoryServiceImplTest {
 
-    @MockBean
+    @InjectMocks
+    private CategoryServiceImpl categoryService;
+    @Mock
     private CategoryRepository categoryRepository;
 
     @Test
@@ -35,9 +42,9 @@ public class CategoryServiceImplTest {
         // mocking
         given(categoryRepository.findRootCategory()).willReturn(categoryEntities);
         // when
-        List<CategoryResponse> response = categoryRepository.findRootCategory().stream().map(CategoryMapper.INSTANCE::toCategoryResponse).collect(Collectors.toList());
+        List<CategoryResponse> categoryResponses = categoryService.getCategory();
         // then
-        assertEquals(response.get(0).getCategoryName(), "hello");
+        assertEquals(categoryResponses.get(0).getCategoryName(), "hello");
     }
 
     @Test
@@ -49,7 +56,7 @@ public class CategoryServiceImplTest {
         // mocking
         given(categoryRepository.findById(any(Long.class))).willReturn(optionalCategoryEntity);
         // when
-        CategoryResponse categoryResponse = CategoryMapper.INSTANCE.toCategoryResponse(categoryRepository.findById(1L).get());
+        CategoryResponse categoryResponse = categoryService.getCategoryById(3L);
         // then
         assertEquals(categoryResponse.getCategoryName(), "hello");
     }
@@ -57,13 +64,15 @@ public class CategoryServiceImplTest {
     @Test
     public void postCategory() {
         // given
-        CategoryEntity categoryEntity = new CategoryEntity();
+        CategoryRequest categoryRequest = new CategoryRequest();
+        categoryRequest.setCategoryName("hello");
+        CategoryEntity categoryEntity = new CategoryEntity(categoryRequest);
         categoryEntity.setId(1L);
-        categoryEntity.setCategoryName("hello");
+
         // mocking
         given(categoryRepository.save(any(CategoryEntity.class))).willReturn(categoryEntity);
         // when
-        CategoryResponse categoryResponse = CategoryMapper.INSTANCE.toCategoryResponse(categoryRepository.save(categoryEntity));
+        CategoryResponse categoryResponse = categoryService.postCategory(categoryRequest);
         // then
         assertEquals(categoryResponse.getCategoryName(), "hello");
     }
@@ -71,16 +80,17 @@ public class CategoryServiceImplTest {
     @Test
     public void updateCategory() {
         // given
+        CategoryEntity categoryEntity = new CategoryEntity();
+        categoryEntity.setCategoryName("before");
+        categoryEntity.setId(1L);
+        Optional<CategoryEntity> optionalCategoryEntity = Optional.of(categoryEntity);
+
         CategoryRequest categoryRequest = new CategoryRequest();
         categoryRequest.setCategoryName("after");
-
-        CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setId(1L);
-        categoryEntity.setCategoryName("before");
-        //when
-        categoryEntity.setCategoryName(categoryRequest.getCategoryName());
         // mocking
-        CategoryResponse categoryResponse = CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
+        given(categoryRepository.findById(any(Long.class))).willReturn(optionalCategoryEntity);
+        //when
+        CategoryResponse categoryResponse = categoryService.updateCategory(1L, categoryRequest);
         // then
         assertEquals(categoryResponse.getCategoryName(), "after");
     }
@@ -104,6 +114,11 @@ public class CategoryServiceImplTest {
         given(categoryRepository.findById(any(Long.class))).willReturn(optionalCategoryEntity);
 
         // when, then
+        try {
+            categoryService.deleteCategory(2L);
+        }catch (RequestInputException e){
+            assertEquals(e.getCode().longValue(), 4);
+        }
         assertEquals(categoryRepository.findById(1L).get().getChildCategoryEntities().isEmpty(), false);
         assertEquals(categoryRepository.findById(1L).get().getChildCategoryEntities().size() == 1, true);
     }
