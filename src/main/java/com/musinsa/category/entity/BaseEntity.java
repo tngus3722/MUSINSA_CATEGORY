@@ -3,11 +3,11 @@ package com.musinsa.category.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Setter
@@ -22,11 +22,11 @@ public class BaseEntity {
     @Column(name = "is_deleted")
     protected Boolean isDeleted = false;
     @Basic
-    @CreationTimestamp
+    @CreatedDate
     @Column(name = "created_at", insertable = false, updatable = false)
-    protected Timestamp createdAt;
+    protected LocalDateTime createdAt;
     @Basic
-    @UpdateTimestamp
+    @LastModifiedDate
     @Column(name = "updated_at", insertable = false, updatable = false)
-    protected Timestamp updatedAt;
+    protected LocalDateTime updatedAt;
 }

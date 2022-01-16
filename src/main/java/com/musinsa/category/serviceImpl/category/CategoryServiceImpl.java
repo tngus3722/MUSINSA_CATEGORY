@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +23,8 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional(readOnly = true)
     @Override
@@ -53,8 +57,9 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryResponse updateCategory(Long categoryId, CategoryRequest categoryRequest) {
         CategoryEntity categoryEntity = this.getCategoryEntity(categoryId); // 계층이동은 금지한다
         categoryEntity.setCategoryName(categoryRequest.getCategoryName());
-        categoryRepository.saveAndFlush(categoryEntity);
-        return CategoryMapper.INSTANCE.toCategoryResponse(categoryEntity);
+        entityManager.flush();
+        entityManager.clear();
+        return CategoryMapper.INSTANCE.toCategoryResponse(this.getCategoryEntity(categoryId));
     }
 
     @Transactional
