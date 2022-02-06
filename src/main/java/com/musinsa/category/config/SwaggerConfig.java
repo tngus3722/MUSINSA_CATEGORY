@@ -36,8 +36,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.musinsa.category.controller"))
                 .paths(PathSelectors.any())
-                .build().
-                securitySchemes(apiKey());
+                .build()
+                .securitySchemes(apiKey());
     }
 
     private List<ApiKey> apiKey() {
