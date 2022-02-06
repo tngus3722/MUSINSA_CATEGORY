@@ -1,8 +1,9 @@
 package com.musinsa.category.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.musinsa.category.domain.category.CategoryRequest;
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.controller.category.CategoryController;
+import com.musinsa.category.dto.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryResponse;
 import com.musinsa.category.service.category.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

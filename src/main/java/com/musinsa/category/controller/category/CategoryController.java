@@ -1,8 +1,8 @@
-package com.musinsa.category.controller;
+package com.musinsa.category.controller.category;
 
 import com.musinsa.category.annotation.ValidationGroup;
-import com.musinsa.category.domain.category.CategoryRequest;
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.dto.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryResponse;
 import com.musinsa.category.service.category.CategoryService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

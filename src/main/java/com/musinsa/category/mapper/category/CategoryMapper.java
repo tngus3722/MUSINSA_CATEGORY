@@ -1,6 +1,6 @@
 package com.musinsa.category.mapper.category;
 
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.dto.category.CategoryResponse;
 import com.musinsa.category.entity.category.CategoryEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

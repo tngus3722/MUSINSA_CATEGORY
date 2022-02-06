@@ -1,6 +1,6 @@
 package com.musinsa.category.entity.category;
 
-import com.musinsa.category.domain.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryRequest;
 import com.musinsa.category.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

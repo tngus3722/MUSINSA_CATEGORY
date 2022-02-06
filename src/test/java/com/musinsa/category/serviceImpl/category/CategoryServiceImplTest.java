@@ -1,24 +1,19 @@
 package com.musinsa.category.serviceImpl.category;
 
-import com.musinsa.category.domain.category.CategoryRequest;
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.dto.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryResponse;
 import com.musinsa.category.entity.category.CategoryEntity;
 import com.musinsa.category.exception.staticException.RequestInputException;
-import com.musinsa.category.mapper.category.CategoryMapper;
 import com.musinsa.category.repository.category.CategoryRepository;
-import com.musinsa.category.service.category.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
