@@ -1,7 +1,7 @@
 package com.musinsa.category.service.category;
 
-import com.musinsa.category.domain.category.CategoryRequest;
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.dto.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryResponse;
 
 import java.util.List;
 

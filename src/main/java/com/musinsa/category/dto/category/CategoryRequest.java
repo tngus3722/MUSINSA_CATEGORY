@@ -1,4 +1,4 @@
-package com.musinsa.category.domain.category;
+package com.musinsa.category.dto.category;
 
 import com.musinsa.category.annotation.ValidationGroup;
 import lombok.Getter;

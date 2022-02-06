@@ -1,4 +1,4 @@
-package com.musinsa.category.config;
+package com.musinsa.category.handler;
 
 import com.musinsa.category.enums.ErrorMessage;
 import com.musinsa.category.exception.BaseException;

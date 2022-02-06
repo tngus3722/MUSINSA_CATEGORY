@@ -1,7 +1,7 @@
 package com.musinsa.category.serviceImpl.category;
 
-import com.musinsa.category.domain.category.CategoryRequest;
-import com.musinsa.category.domain.category.CategoryResponse;
+import com.musinsa.category.dto.category.CategoryRequest;
+import com.musinsa.category.dto.category.CategoryResponse;
 import com.musinsa.category.entity.category.CategoryEntity;
 import com.musinsa.category.enums.ErrorMessage;
 import com.musinsa.category.exception.staticException.RequestInputException;
